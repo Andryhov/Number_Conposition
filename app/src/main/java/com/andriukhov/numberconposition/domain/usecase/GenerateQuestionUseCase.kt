@@ -1,4 +1,15 @@
 package com.andriukhov.numberconposition.domain.usecase
 
-class GenerateQuestionUseCase {
+import com.andriukhov.numberconposition.domain.entity.Question
+import com.andriukhov.numberconposition.domain.repository.GameRepository
+
+class GenerateQuestionUseCase(private val repository: GameRepository) {
+
+    operator fun invoke(maxSumValue: Int): Question {
+        return repository.generateQuestion(maxSumValue, COUNT_OF_OPTIONS)
+    }
+
+    companion object {
+        private const val COUNT_OF_OPTIONS = 6
+    }
 }

@@ -1,4 +1,5 @@
 package com.andriukhov.numberconposition.domain.entity
 
-class Level {
+enum class Level {
+    TEST, EASY, NORMAL, HARD
 }
