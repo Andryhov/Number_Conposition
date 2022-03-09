@@ -1,7 +1,8 @@
-package com.andriukhov.numberconposition
+package com.andriukhov.numberconposition.presentation
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.andriukhov.numberconposition.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
