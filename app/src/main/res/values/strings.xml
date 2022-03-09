@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Number Conposition</string>
+    <string name="number_composition_text_title">Состав числа</string>
+    <string name="logo_brain">Logo brain</string>
+    <string name="submit">Понятно</string>
 </resources>
