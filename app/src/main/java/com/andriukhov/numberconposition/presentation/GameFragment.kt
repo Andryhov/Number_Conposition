@@ -5,7 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.andriukhov.numberconposition.R
+import com.andriukhov.numberconposition.data.GameRepositoryImpl
 import com.andriukhov.numberconposition.databinding.FragmentGameBinding
+import com.andriukhov.numberconposition.domain.entity.GameResult
 import com.andriukhov.numberconposition.domain.entity.Level
 
 class GameFragment : Fragment() {
@@ -30,8 +33,23 @@ class GameFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.tvSumNumber.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(
+                    R.id.container, EndGameFragment.newInstance(
+                        GameResult(true, 10, 20, GameRepositoryImpl.getGameSettings(level))
+                    )
+                )
+                .addToBackStack(null)
+                .commit()
+        }
+    }
+
     private fun parseLevel() {
-       level = requireArguments().getSerializable(LEVEL_KEY) as Level
+        level = requireArguments().getParcelable<Level>(LEVEL_KEY) as Level
     }
 
     override fun onDestroyView() {
@@ -41,11 +59,12 @@ class GameFragment : Fragment() {
 
     companion object {
         private const val LEVEL_KEY = "level"
+        const val NAME = "game_name"
 
         fun newInstance(level: Level): GameFragment {
             return GameFragment().apply {
                 arguments = Bundle().apply {
-                    putSerializable(LEVEL_KEY, level)
+                    putParcelable(LEVEL_KEY, level)
                 }
             }
         }

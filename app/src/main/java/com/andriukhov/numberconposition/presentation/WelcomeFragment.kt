@@ -31,8 +31,8 @@ class WelcomeFragment: Fragment() {
     private fun clickButtonSubmit() {
         binding.submitButton.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction()
-                .addToBackStack(null)
                 .replace(R.id.container, LevelSelectionFragment.newInstance())
+                .addToBackStack(LevelSelectionFragment.NAME)
                 .commit()
         }
     }
